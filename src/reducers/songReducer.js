@@ -1,7 +1,14 @@
-import { FETCH_SONGS, LOADING } from "../actions/types";
+import {
+  FETCH_SONGS,
+  FETCH_LYRIC,
+  FETCH_TRACK,
+  LOADING
+} from "../actions/types";
 const initialState = {
   heading: "",
   songList: [],
+  lyrics: {},
+  track: {},
   loading: false
 };
 
@@ -19,7 +26,18 @@ export default function(state = initialState, action) {
         ...state,
         loading: true
       };
-
+    case FETCH_LYRIC:
+      return {
+        ...state,
+        lyrics: action.payload,
+        loading: true
+      };
+    case FETCH_TRACK:
+      return {
+        ...state,
+        track: action.payload,
+        loading: false
+      };
     default:
       return state;
   }
