@@ -1,3 +1,4 @@
+export const EMPTY_SONGS = "EMPTY_SONG";
 export const FETCH_SONGS = "FETCH_SONGS";
 export const FETCH_LYRIC = "FETCH_LYRIC";
 export const LOADING = "LOADING";

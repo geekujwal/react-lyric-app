@@ -4,7 +4,8 @@ import {
   FETCH_SONGS,
   FETCH_LYRIC,
   FETCH_TRACK,
-  LOADING
+  LOADING,
+  EMPTY_SONGS
 } from "../actions/types";
 const initialState = {
   input_text: "",
@@ -30,6 +31,11 @@ export default function(state = initialState, action) {
         songList: action.payload.songList,
         heading: action.payload.heading,
         loading: false
+      };
+    case EMPTY_SONGS:
+      return {
+        ...state,
+        songList: []
       };
     case LOADING:
       return {

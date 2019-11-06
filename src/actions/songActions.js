@@ -4,11 +4,15 @@ import {
   FETCH_TRACK,
   LOADING,
   GET_INPUTED_TEXT,
-  SEARCH_SONGS
+  SEARCH_SONGS,
+  EMPTY_SONGS
 } from "./types";
 import axios from "axios";
 
 export const search_songs = text => dispatch => {
+  dispatch({
+    type: EMPTY_SONGS
+  });
   dispatch({
     type: LOADING
   });
