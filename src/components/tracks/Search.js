@@ -1,24 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSongs } from "../../actions/songActions";
+import { get_input_text, search_songs } from "../../actions/songActions";
 
 class Search extends Component {
-  state = {
-    userInput: ""
-  };
-  //   componentDidMount() {
-  //     this.props.fetchSongs();
-  //   }
   render() {
     const findTrack = e => {
       e.preventDefault();
-      console.log(this.state.userInput);
+      this.props.search_songs(this.props.input_text);
     };
 
     const onChange = e => {
-      this.setState({
-        userInput: e.target.value
-      });
+      this.props.get_input_text(e.target.value);
     };
     return (
       <div className="card card-body mb-4 p-4">
@@ -33,7 +25,7 @@ class Search extends Component {
               className="form-control form-control-lg"
               placeholder="Song title..."
               name="userInput"
-              value={this.state.userInput}
+              value={this.props.input_text}
               onChange={onChange}
             />
           </div>
@@ -49,11 +41,10 @@ class Search extends Component {
   }
 }
 const mapStateToProps = state => ({
-  heading: state.songs.heading,
-  songLists: state.songs.songLists
+  input_text: state.songs.input_text
 });
 
 export default connect(
   mapStateToProps,
-  { fetchSongs }
+  { get_input_text, search_songs }
 )(Search);

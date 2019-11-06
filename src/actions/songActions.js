@@ -1,5 +1,39 @@
-import { FETCH_SONGS, FETCH_LYRIC, FETCH_TRACK, LOADING } from "./types";
+import {
+  FETCH_SONGS,
+  FETCH_LYRIC,
+  FETCH_TRACK,
+  LOADING,
+  GET_INPUTED_TEXT,
+  SEARCH_SONGS
+} from "./types";
 import axios from "axios";
+
+export const search_songs = text => dispatch => {
+  dispatch({
+    type: LOADING
+  });
+  axios
+    .get(
+      `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${text}&page_size=10&page=1&s_track_rating=desc&apikey=${process.env.REACT_APP_MM_KEY}`
+    )
+    .then(res => {
+      let track_list = res.data.message.body.track_list;
+      dispatch({
+        type: SEARCH_SONGS,
+        payload: {
+          songList: track_list,
+          heading: "Search Results"
+        }
+      });
+    });
+};
+export const get_input_text = text => dispatch => {
+  dispatch({
+    type: GET_INPUTED_TEXT,
+    payload: text
+  });
+  console.log(text);
+};
 export const fetchSongs = () => dispatch => {
   dispatch({
     type: LOADING
