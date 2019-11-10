@@ -67,7 +67,6 @@ export const fetchLyric = song_id => dispatch => {
     )
     .then(res => {
       let lyrics = res.data.message.body.lyrics;
-      // setLyrics({ lyrics });
       dispatch({
         type: FETCH_LYRIC,
         payload: lyrics

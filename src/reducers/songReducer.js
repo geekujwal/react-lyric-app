@@ -45,8 +45,7 @@ export default function(state = initialState, action) {
     case FETCH_LYRIC:
       return {
         ...state,
-        lyrics: action.payload,
-        loading: true
+        lyrics: action.payload
       };
     case FETCH_TRACK:
       return {
